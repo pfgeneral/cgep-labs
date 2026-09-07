@@ -1,0 +1,66 @@
+{
+  "component-definition": {
+    "uuid": "e6abbfcf-cf39-487a-b325-ac6a0c011396",
+    "metadata": {
+      "title": "Generic component-definition created by trestle named compliant-s3-v1.",
+      "last-modified": "2026-09-07T14:48:17.866+00:00",
+      "version": "0.0.0",
+      "oscal-version": "1.2.1",
+      "parties": [
+        {
+          "uuid": "4665b803-9af1-4299-b650-6f0365c9f2f6",
+          "type": "organization",
+          "name": "Your organization"
+        }
+      ]
+    },
+    "components": [
+      {
+        "uuid": "a1689b13-8485-46f2-a38c-0f768e0d8f72",
+        "type": "software",
+        "title": "compliant-s3",
+        "description": "Reusable Terraform pattern for an AWS S3 primary bucket plus a dedicated access-log bucket. Hardcodes server-side encryption, versioning, public access block, access logging, and required compliance tags.",
+        "purpose": "Provide a compliant-by-default S3 primitive that any team can adopt with three lines of consumer Terraform.",
+        "responsible-roles": [
+          {
+            "role-id": "provider",
+            "party-uuids": [
+              "33118d7b-e24a-4957-943e-e292079741ff"
+            ]
+          }
+        ],
+        "control-implementations": [
+          {
+            "uuid": "ad660a0c-c00c-4fab-9ff3-fc5f97fa421a",
+            "source": "https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "description": "Implementation of NIST 800-53 Rev 5 controls satisfied by this module.",
+            "implemented-requirements": [
+              {
+                "uuid": "16c9ed5b-ddab-42ef-bb7b-bc85eb598fb5",
+                "control-id": "sc-28",
+                "description": "AES-256 server-side encryption is enforced via aws_s3_bucket_server_side_encryption_configuration. Hardcoded; consumers cannot override.",
+                "props": [
+                  {
+                    "name": "implementation-status",
+                    "value": "implemented"
+                  },
+                  {
+                    "name": "terraform-resource",
+                    "value": "aws_s3_bucket_server_side_encryption_configuration.primary"
+                  }
+                ],
+                "links": [
+                  {
+                    "rel": "evidence",
+                    "href": "s3://EVIDENCE_VAULT/runs/LATEST/evidence-LATEST.tar.gz",
+                    "text": "Signed pipeline bundle containing terraform plan.json."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
